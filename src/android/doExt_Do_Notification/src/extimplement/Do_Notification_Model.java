@@ -83,7 +83,7 @@ public class Do_Notification_Model extends DoSingletonModule implements Do_Notif
 		final AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
 		builder.setMessage(_content).setTitle(_title).setCancelable(false).setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-				_scriptEngine.callback(_callbackFuncName, new DoInvokeResult());
+				_scriptEngine.callback(_callbackFuncName, new DoInvokeResult(getUniqueKey()));
 			}
 		});
 		_activity.runOnUiThread(new Runnable() {
@@ -110,7 +110,7 @@ public class Do_Notification_Model extends DoSingletonModule implements Do_Notif
 		String _button2text = _dictParas.getOneText("rightbuttontext", "取消");
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
 		final AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
-		final DoInvokeResult _invokeResult = new DoInvokeResult();
+		final DoInvokeResult _invokeResult = new DoInvokeResult(getUniqueKey());
 		builder.setMessage(_content).setTitle(_title).setCancelable(false).setPositiveButton(_button1text, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				try {
