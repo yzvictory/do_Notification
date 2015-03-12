@@ -12,6 +12,7 @@
 #import "doIScriptEngine.h"
 #import "doInvokeResult.h"
 #import "doUIModuleHelper.h"
+#import "doJsonNode.h"
 
 @implementation DoExt_Notification_SM
 #pragma mark -
