@@ -106,8 +106,8 @@ public class do_Notification_Model extends DoSingletonModule implements do_Notif
 	public void confirm(DoJsonNode _dictParas, final DoIScriptEngine _scriptEngine, final String _callbackFuncName) throws Exception {
 		String _title = _dictParas.getOneText("title", "");
 		String _content = _dictParas.getOneText("text", "");
-		String _button1text = _dictParas.getOneText("leftbuttontext", "确定");
-		String _button2text = _dictParas.getOneText("rightbuttontext", "取消");
+		String _button1text = _dictParas.getOneText("button1text", "确定");
+		String _button2text = _dictParas.getOneText("button2text", "取消");
 		Activity _activity = (Activity) _scriptEngine.getCurrentPage().getPageView();
 		final AlertDialog.Builder builder = new AlertDialog.Builder(_activity);
 		final DoInvokeResult _invokeResult = new DoInvokeResult(getUniqueKey());
