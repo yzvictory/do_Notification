@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "DoExt_Notification_ISM.h"
+#import "do_Notification_ISM.h"
 #import <UIKit/UIKit.h>
 #import "doUIModule.h"
 #import "doIUIModuleView.h"
 #import "doSingletonModule.h"
 
-@interface DoExt_Notification_SM : doSingletonModule<DoExt_Notification_ISM>
+@interface do_Notification_SM : doSingletonModule<do_Notification_ISM>
 
 @end
 

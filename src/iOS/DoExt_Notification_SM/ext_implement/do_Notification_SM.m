@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "DoExt_Notification_SM.h"
+#import "do_Notification_SM.h"
 
 #import "doScriptEngineHelper.h"
 #import "doIScriptEngine.h"
@@ -14,7 +14,7 @@
 #import "doUIModuleHelper.h"
 #import "doJsonNode.h"
 
-@implementation DoExt_Notification_SM
+@implementation do_Notification_SM
 #pragma mark -
 #pragma mark - 同步异步方法的实现
 /*

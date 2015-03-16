@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol DoExt_Notification_ISM <NSObject>
+@protocol do_Notification_ISM <NSObject>
 
 @required
 //实现同步或异步方法，parms中包含了所需用的属性
