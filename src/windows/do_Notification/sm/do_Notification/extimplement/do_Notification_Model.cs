@@ -16,9 +16,10 @@ namespace do_Notification.extimplement
     /// 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象；
     /// 获取DoInvokeResult对象方式this.model.getCurrentPage().getScriptEngine().createInvokeResult(model.getUniqueKey());
     /// </summary>
-    public class notification_Model : doSingletonModule
+    public class do_Notification_Model : doSingletonModule
     {
-        public notification_Model():base()
+        public do_Notification_Model()
+            : base()
         {
 
         }
