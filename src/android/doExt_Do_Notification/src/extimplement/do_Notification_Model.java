@@ -114,9 +114,7 @@ public class do_Notification_Model extends DoSingletonModule implements do_Notif
 		builder.setMessage(_content).setTitle(_title).setCancelable(false).setPositiveButton(_button1text, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				try {
-					DoJsonNode _node = new DoJsonNode();
-					_node.setOneInteger("index", 1);
-					_invokeResult.setResultNode(_node);
+					_invokeResult.setResultInteger(1);
 					_scriptEngine.callback(_callbackFuncName, _invokeResult);
 				} catch (Exception e) {
 					throw new RuntimeException("confirm", e);
@@ -126,9 +124,7 @@ public class do_Notification_Model extends DoSingletonModule implements do_Notif
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-					DoJsonNode _node = new DoJsonNode();
-					_node.setOneInteger("index", 2);
-					_invokeResult.setResultNode(_node);
+					_invokeResult.setResultInteger(2);
 					_scriptEngine.callback(_callbackFuncName, _invokeResult);
 				} catch (Exception e) {
 					throw new RuntimeException("confirm", e);
