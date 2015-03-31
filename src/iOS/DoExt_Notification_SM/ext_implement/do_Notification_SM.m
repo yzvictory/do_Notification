@@ -19,30 +19,30 @@
 #pragma mark - 同步异步方法的实现
 /*
  1.参数节点
-     doJsonNode *_dictParas = [parms objectAtIndex:0];
-     在节点中，获取对应的参数
-     NSString *title = [_dictParas GetOneText:@"title" :@"" ];
-     说明：第一个参数为对象名，第二为默认值
+ doJsonNode *_dictParas = [parms objectAtIndex:0];
+ 在节点中，获取对应的参数
+ NSString *title = [_dictParas GetOneText:@"title" :@"" ];
+ 说明：第一个参数为对象名，第二为默认值
  
  2.脚本运行时的引擎
-     id<doIScriptEngine> _scritEngine = [parms objectAtIndex:1];
+ id<doIScriptEngine> _scritEngine = [parms objectAtIndex:1];
  
  同步：
  3.同步回调对象(有回调需要添加如下代码)
-     doInvokeResult *_invokeResult = [parms objectAtIndex:2];
-     回调信息
-     如：（回调一个字符串信息）
-     [_invokeResult SetResultText:((doUIModule *)_model).UniqueKey];
+ doInvokeResult *_invokeResult = [parms objectAtIndex:2];
+ 回调信息
+ 如：（回调一个字符串信息）
+ [_invokeResult SetResultText:((doUIModule *)_model).UniqueKey];
  异步：
  3.获取回调函数名(异步方法都有回调)
-     NSString *_callbackName = [parms objectAtIndex:2];
-     在合适的地方进行下面的代码，完成回调
-     新建一个回调对象
-     doInvokeResult *_invokeResult = [[doInvokeResult alloc] init];
-     填入对应的信息
-     如：（回调一个字符串）
-     [_invokeResult SetResultText: @"异步方法完成"];
-     [_scritEngine Callback:_callbackName :_invokeResult];
+ NSString *_callbackName = [parms objectAtIndex:2];
+ 在合适的地方进行下面的代码，完成回调
+ 新建一个回调对象
+ doInvokeResult *_invokeResult = [[doInvokeResult alloc] init];
+ 填入对应的信息
+ 如：（回调一个字符串）
+ [_invokeResult SetResultText: @"异步方法完成"];
+ [_scritEngine Callback:_callbackName :_invokeResult];
  */
 - (void)toast:(NSArray *) parms
 {
@@ -132,18 +132,17 @@
 
 - (void)alertView:(doConfirmView *)confirmView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    doJsonNode *_node = [[doJsonNode alloc]init];
-    
+    int index;
     if (buttonIndex == confirmView.cancelButtonIndex)
     {
-        [_node SetOneInteger:@"index" :2];
+        index = 2;
     }
     else
     {
-        [_node SetOneInteger:@"index" :1];
+        index = 1;
     }
     doInvokeResult *_invokeResult = [[doInvokeResult alloc] init:nil];
-    [_invokeResult SetResultNode: _node];
+    [_invokeResult SetResultInteger:index];
     [confirmView.myScritEngine Callback:confirmView.myCallBackName :_invokeResult];
     [confirmView Dispose];
 }
