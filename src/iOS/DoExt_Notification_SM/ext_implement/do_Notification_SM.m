@@ -1,6 +1,6 @@
 //
-//  TYPEID_SM.m
-//  DoExt_API
+//  do_Notification_SM.m
+//  DoExt_SM
 //
 //  Created by @userName on @time.
 //  Copyright (c) 2015年 DoExt. All rights reserved.
@@ -20,7 +20,7 @@
 /*
  1.参数节点
  doJsonNode *_dictParas = [parms objectAtIndex:0];
- 在节点中，获取对应的参数
+ a.在节点中，获取对应的参数
  NSString *title = [_dictParas GetOneText:@"title" :@"" ];
  说明：第一个参数为对象名，第二为默认值
  
@@ -44,7 +44,43 @@
  [_invokeResult SetResultText: @"异步方法完成"];
  [_scritEngine Callback:_callbackName :_invokeResult];
  */
-- (void)toast:(NSArray *) parms
+//同步
+//异步
+- (void)alert:(NSArray *)parms
+{
+    doJsonNode *_dictParas = [parms objectAtIndex:0];
+    NSString *_title = [_dictParas GetOneText:@"title" :@"" ];
+    NSString *_text = [_dictParas GetOneText:@"text" :@"" ];
+    [doUIModuleHelper Alert:_title msg:_text];
+    
+}
+- (void)confirm:(NSArray *)parms
+{
+    doJsonNode *_dictParas = [parms objectAtIndex:0];
+    id<doIScriptEngine> _scritEngine = [parms objectAtIndex:1];
+    NSString *_callbackName = [parms objectAtIndex:2];
+    
+    NSString *_title = [_dictParas GetOneText:@"title" :@"" ];
+    NSString *_text = [_dictParas GetOneText:@"text" :@"" ];
+    NSString *_button1text = [_dictParas GetOneText:@"button1text" :@"" ];
+    NSString *_button2text = [_dictParas GetOneText:@"button2text" :@"" ];
+    
+    if (0 == _button1text.length)
+    {
+        _button1text = @"确定";
+    }
+    if (0 == _button2text.length)
+    {
+        _button2text = @"取消";
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        doConfirmView *confirmView = [[doConfirmView alloc]initWithTitle:_title message:_text delegate:self cancelButtonTitle:_button1text otherButtonTitles:_button2text  callbackName:_callbackName scriptEngine:_scritEngine];
+        
+        [confirmView show];
+    });
+    
+}
+- (void)toast:(NSArray *)parms
 {
     doJsonNode *_dictParas = [parms objectAtIndex:0];
     NSString *_text = [_dictParas GetOneText:@"text" :@"" ];
@@ -77,43 +113,11 @@
             [_showView removeFromSuperview];
         }];
     });
-}
-
-- (void)alert:(NSArray *)parms
-{
-    doJsonNode *_dictParas = [parms objectAtIndex:0];
-    NSString *_title = [_dictParas GetOneText:@"title" :@"" ];
-    NSString *_text = [_dictParas GetOneText:@"text" :@"" ];
-    [doUIModuleHelper Alert:_title msg:_text];
-}
-
-- (void)confirm: (NSArray *)parms
-{
-    doJsonNode *_dictParas = [parms objectAtIndex:0];
-    id<doIScriptEngine> _scritEngine = [parms objectAtIndex:1];
-    NSString *_callbackName = [parms objectAtIndex:2];
     
-    NSString *_title = [_dictParas GetOneText:@"title" :@"" ];
-    NSString *_text = [_dictParas GetOneText:@"text" :@"" ];
-    NSString *_button1text = [_dictParas GetOneText:@"button1text" :@"" ];
-    NSString *_button2text = [_dictParas GetOneText:@"button2text" :@"" ];
-    
-    if (0 == _button1text.length)
-    {
-        _button1text = @"确定";
-    }
-    if (0 == _button2text.length)
-    {
-        _button2text = @"取消";
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        doConfirmView *confirmView = [[doConfirmView alloc]initWithTitle:_title message:_text delegate:self cancelButtonTitle:_button1text otherButtonTitles:_button2text  callbackName:_callbackName scriptEngine:_scritEngine];
-        
-        [confirmView show];
-    });
 }
 
 @end
+
 
 @implementation doConfirmView
 - (void)Dispose
@@ -132,17 +136,18 @@
 
 - (void)alertView:(doConfirmView *)confirmView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    int index;
+    doJsonNode *_node = [[doJsonNode alloc]init];
+    
     if (buttonIndex == confirmView.cancelButtonIndex)
     {
-        index = 2;
+        [_node SetOneInteger:@"index" :2];
     }
     else
     {
-        index = 1;
+        [_node SetOneInteger:@"index" :1];
     }
     doInvokeResult *_invokeResult = [[doInvokeResult alloc] init:nil];
-    [_invokeResult SetResultInteger:index];
+    [_invokeResult SetResultNode: _node];
     [confirmView.myScritEngine Callback:confirmView.myCallBackName :_invokeResult];
     [confirmView Dispose];
 }
