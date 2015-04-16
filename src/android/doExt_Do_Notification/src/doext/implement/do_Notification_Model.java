@@ -1,4 +1,4 @@
-package extimplement;
+package doext.implement;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,7 @@ import core.helper.jsonparse.DoJsonNode;
 import core.interfaces.DoIScriptEngine;
 import core.object.DoInvokeResult;
 import core.object.DoSingletonModule;
-import extdefine.do_Notification_IMethod;
+import doext.define.do_Notification_IMethod;
 
 /**
  * 自定义扩展SM组件Model实现，继承DoSingletonModule抽象类，并实现Do_Notification_IMethod接口方法；
