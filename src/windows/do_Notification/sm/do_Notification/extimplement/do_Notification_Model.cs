@@ -16,9 +16,10 @@ namespace do_Notification.extimplement
     /// 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象；
     /// 获取DoInvokeResult对象方式this.model.getCurrentPage().getScriptEngine().createInvokeResult(model.getUniqueKey());
     /// </summary>
-    public class notification_Model : doSingletonModule
+    public class do_Notification_Model : doSingletonModule
     {
-        public notification_Model():base()
+        public do_Notification_Model()
+            : base()
         {
 
         }
@@ -73,7 +74,9 @@ namespace do_Notification.extimplement
                 md.Title = _title;
                 md.Commands.Add(new UICommand(_button1text, new UICommandInvokedHandler((e) =>
                 {
-                    _invokeResult.SetResultText("1");
+                     var  doj= new doJsonNode();
+                     doj.SetOneText("index", "1");
+                     _invokeResult.SetResultNode(doj);
                     if (!string.IsNullOrEmpty(_callbackFuncName))
                     {
                         _scriptEngine.Callback(_callbackFuncName, _invokeResult);
@@ -81,7 +84,9 @@ namespace do_Notification.extimplement
                 })));
                 md.Commands.Add(new UICommand(_button2text, new UICommandInvokedHandler((e) =>
                 {
-                    _invokeResult.SetResultText("2");
+                    var doj = new doJsonNode();
+                    doj.SetOneText("index", "2");
+                    _invokeResult.SetResultNode(doj);
                     if (!string.IsNullOrEmpty(_callbackFuncName))
                     {
                         _scriptEngine.Callback(_callbackFuncName, _invokeResult);
@@ -114,7 +119,7 @@ namespace do_Notification.extimplement
                 // Create a toast, then create a ToastNotifier object to show
                 // the toast
                 ToastNotification toast = new ToastNotification(toastDOM);
-
+                
                 // If you have other applications in your package, you can specify the AppId of
                 // the app to create a ToastNotifier for that application
                 ToastNotificationManager.CreateToastNotifier().Show(toast);

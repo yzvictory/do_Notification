@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{94B0AC79-1102-489A-9FD5-E7A3563205FD}</ProjectGuid>
+    <ProjectGuid>{D553C403-7176-4599-AEF0-F8FAB39C695B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>do_Notification</RootNamespace>
@@ -38,13 +38,13 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="extdefine\notification_IMethod.cs" />
-    <Compile Include="extimplement\notification_Model.cs" />
+    <Compile Include="extdefine\do_Notification_IMethod.cs" />
+    <Compile Include="extimplement\do_Notification_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="doCore">
-      <HintPath>bin\Debug\doCore.dll</HintPath>
+      <HintPath>..\..\dll\doCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
